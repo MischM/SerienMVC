@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SerienDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Actor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Serie">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Rating" Type="int" />
+          <Property Name="ReleaseDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SerieActor">
+          <Key>
+            <PropertyRef Name="fk_Serie" />
+            <PropertyRef Name="fk_Actor" />
+          </Key>
+          <Property Name="fk_Serie" Type="int" Nullable="false" />
+          <Property Name="fk_Actor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SerieGenre">
+          <Key>
+            <PropertyRef Name="fk_Genre" />
+            <PropertyRef Name="fk_Serie" />
+          </Key>
+          <Property Name="fk_Genre" Type="int" Nullable="false" />
+          <Property Name="fk_Serie" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__SerieActo__fk_Ac__1A14E395">
+          <End Role="Actor" Type="Self.Actor" Multiplicity="1" />
+          <End Role="SerieActor" Type="Self.SerieActor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SerieActor">
+              <PropertyRef Name="fk_Actor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SerieActo__fk_Se__1B0907CE">
+          <End Role="Serie" Type="Self.Serie" Multiplicity="1" />
+          <End Role="SerieActor" Type="Self.SerieActor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Serie">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SerieActor">
+              <PropertyRef Name="fk_Serie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SerieGenr__fk_Ge__164452B1">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
+          <End Role="SerieGenre" Type="Self.SerieGenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SerieGenre">
+              <PropertyRef Name="fk_Genre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SerieGenr__fk_Se__173876EA">
+          <End Role="Serie" Type="Self.Serie" Multiplicity="1" />
+          <End Role="SerieGenre" Type="Self.SerieGenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Serie">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SerieGenre">
+              <PropertyRef Name="fk_Serie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SerienDBModelStoreContainer">
+          <EntitySet Name="Actor" EntityType="Self.Actor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Serie" EntityType="Self.Serie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SerieActor" EntityType="Self.SerieActor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SerieGenre" EntityType="Self.SerieGenre" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__SerieActo__fk_Ac__1A14E395" Association="Self.FK__SerieActo__fk_Ac__1A14E395">
+            <End Role="Actor" EntitySet="Actor" />
+            <End Role="SerieActor" EntitySet="SerieActor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SerieActo__fk_Se__1B0907CE" Association="Self.FK__SerieActo__fk_Se__1B0907CE">
+            <End Role="Serie" EntitySet="Serie" />
+            <End Role="SerieActor" EntitySet="SerieActor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SerieGenr__fk_Ge__164452B1" Association="Self.FK__SerieGenr__fk_Ge__164452B1">
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="SerieGenre" EntitySet="SerieGenre" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SerieGenr__fk_Se__173876EA" Association="Self.FK__SerieGenr__fk_Se__173876EA">
+            <End Role="Serie" EntitySet="Serie" />
+            <End Role="SerieGenre" EntitySet="SerieGenre" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SerienDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Actor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Serie" Relationship="Self.SerieActor" FromRole="Actor" ToRole="Serie" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Serie" Relationship="Self.SerieGenre" FromRole="Genre" ToRole="Serie" />
+        </EntityType>
+        <EntityType Name="Serie">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Rating" Type="Int32" />
+          <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Actor" Relationship="Self.SerieActor" FromRole="Serie" ToRole="Actor" />
+          <NavigationProperty Name="Genre" Relationship="Self.SerieGenre" FromRole="Serie" ToRole="Genre" />
+        </EntityType>
+        <Association Name="SerieActor">
+          <End Role="Actor" Type="Self.Actor" Multiplicity="*" />
+          <End Role="Serie" Type="Self.Serie" Multiplicity="*" />
+        </Association>
+        <Association Name="SerieGenre">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="*" />
+          <End Role="Serie" Type="Self.Serie" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="SerienDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Actor" EntityType="Self.Actor" />
+          <EntitySet Name="Genre" EntityType="Self.Genre" />
+          <EntitySet Name="Serie" EntityType="Self.Serie" />
+          <AssociationSet Name="SerieActor" Association="Self.SerieActor">
+            <End Role="Actor" EntitySet="Actor" />
+            <End Role="Serie" EntitySet="Serie" />
+          </AssociationSet>
+          <AssociationSet Name="SerieGenre" Association="Self.SerieGenre">
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="Serie" EntitySet="Serie" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SerienDBModelStoreContainer" CdmEntityContainer="SerienDBEntities">
+          <EntitySetMapping Name="Actor">
+            <EntityTypeMapping TypeName="SerienDBModel.Actor">
+              <MappingFragment StoreEntitySet="Actor">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genre">
+            <EntityTypeMapping TypeName="SerienDBModel.Genre">
+              <MappingFragment StoreEntitySet="Genre">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Serie">
+            <EntityTypeMapping TypeName="SerienDBModel.Serie">
+              <MappingFragment StoreEntitySet="Serie">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="SerieActor" TypeName="SerienDBModel.SerieActor" StoreEntitySet="SerieActor">
+            <EndProperty Name="Actor">
+              <ScalarProperty Name="ID" ColumnName="fk_Actor" />
+            </EndProperty>
+            <EndProperty Name="Serie">
+              <ScalarProperty Name="ID" ColumnName="fk_Serie" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="SerieGenre" TypeName="SerienDBModel.SerieGenre" StoreEntitySet="SerieGenre">
+            <EndProperty Name="Genre">
+              <ScalarProperty Name="ID" ColumnName="fk_Genre" />
+            </EndProperty>
+            <EndProperty Name="Serie">
+              <ScalarProperty Name="ID" ColumnName="fk_Serie" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
