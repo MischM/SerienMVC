@@ -14,6 +14,9 @@ namespace SerienMVC.Controllers
     {
         private SerienDBEntities db = new SerienDBEntities();
 
+        //todo anpassen
+
+
         // GET: Series
         public ActionResult Index()
         {

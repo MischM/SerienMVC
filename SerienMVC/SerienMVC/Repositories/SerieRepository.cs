@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -11,16 +12,26 @@ namespace SerienMVC.Repositories
         {
         }
 
-        public Serie GetSerieWithActor(int id)
+        public List<Serie> GetSerieWithActors(int id)
         {
-            //todo
-            return null;
+            return SerienDBEntities
+                .Serie
+                .Where(s => s.ID == id)
+                .Include("Actor")
+                .ToList();
         }
 
-        public Serie GetSerieWithGenre(int id)
+        public List<Serie> GetSerieWithGenres(int id)
         {
-            //todo
-            return null;
+            return SerienDBEntities
+                .Serie
+                .Where(s => s.ID == id)
+                .Include("Genre")
+                .ToList();
+        }
+        public SerienDBEntities SerienDBEntities
+        {
+            get { return Context as SerienDBEntities; }
         }
     }
 }

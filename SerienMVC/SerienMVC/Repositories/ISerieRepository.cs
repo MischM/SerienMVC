@@ -8,7 +8,7 @@ namespace SerienMVC.Repositories
 {
     public interface ISerieRepository:IRepository<Serie>
     {
-        Serie GetSerieWithActor(int id);
-        Serie GetSerieWithGenre(int id);
+        List<Serie> GetSerieWithActors(int id);
+        List<Serie> GetSerieWithGenres(int id);
     }
 }

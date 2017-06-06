@@ -10,5 +10,17 @@ namespace SerienMVC.Repositories
         public ActorRepository(SerienDBEntities context) : base(context)
         {
         }
+
+        public List<Actor> GetActorsWithSeries()
+        {
+            return SerienDBEntities
+                .Actor
+                .Include("Serie")
+                .ToList();
+        }
+        public SerienDBEntities SerienDBEntities
+        {
+            get { return Context as SerienDBEntities; }
+        }
     }
 }

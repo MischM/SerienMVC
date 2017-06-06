@@ -8,5 +8,6 @@ namespace SerienMVC.Repositories
 {
     public interface IActorRepository : IRepository<Actor>
     {
+        List<Actor> GetActorsWithSeries();
     }
 }
