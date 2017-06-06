@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace SerienMVC.Repositories
 {
-    public interface ISerieRepository:IRepository<Serie>
+    public interface IActorRepository : IRepository<Actor>
     {
-        Serie GetSerieWithActor(int id);
-        Serie GetSerieWithGenre(int id);
     }
 }
