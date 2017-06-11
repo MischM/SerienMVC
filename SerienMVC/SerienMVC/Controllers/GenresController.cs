@@ -7,17 +7,22 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SerienMVC;
+using SerienMVC.Repositories;
 
 namespace SerienMVC.Controllers
 {
     public class GenresController : Controller
     {
-        private SerienDBEntities db = new SerienDBEntities();
+        private UnitOfWork uow;
+        public GenresController()
+        {
+            this.uow = new UnitOfWork(new SerienDBEntities());
+        }
 
         // GET: Genres
         public ActionResult Index()
         {
-            return View(db.Genre.ToList());
+            return View(uow.Genre.GetAll());
         }
 
         // GET: Genres/Details/5
@@ -27,7 +32,7 @@ namespace SerienMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Genre genre = db.Genre.Find(id);
+            Genre genre = uow.Genre.Get(id.Value);
             if (genre == null)
             {
                 return HttpNotFound();
@@ -50,8 +55,8 @@ namespace SerienMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Genre.Add(genre);
-                db.SaveChanges();
+                uow.Genre.Add(genre);
+                uow.Complete();
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +70,7 @@ namespace SerienMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Genre genre = db.Genre.Find(id);
+            Genre genre = uow.Genre.Get(id.Value);
             if (genre == null)
             {
                 return HttpNotFound();
@@ -82,8 +87,8 @@ namespace SerienMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(genre).State = EntityState.Modified;
-                db.SaveChanges();
+                uow.Genre.Update(genre);//db.Entry(genre).State = EntityState.Modified;
+                uow.Complete();
                 return RedirectToAction("Index");
             }
             return View(genre);
@@ -96,7 +101,7 @@ namespace SerienMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Genre genre = db.Genre.Find(id);
+            Genre genre = uow.Genre.Get(id.Value);
             if (genre == null)
             {
                 return HttpNotFound();
@@ -109,9 +114,9 @@ namespace SerienMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Genre genre = db.Genre.Find(id);
-            db.Genre.Remove(genre);
-            db.SaveChanges();
+            Genre genre = uow.Genre.Get(id);
+            uow.Genre.Remove(genre);
+            uow.Complete();
             return RedirectToAction("Index");
         }
 
@@ -119,7 +124,7 @@ namespace SerienMVC.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                uow.Dispose();
             }
             base.Dispose(disposing);
         }

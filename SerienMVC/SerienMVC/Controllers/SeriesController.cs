@@ -7,20 +7,21 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SerienMVC;
+using SerienMVC.Repositories;
 
 namespace SerienMVC.Controllers
 {
     public class SeriesController : Controller
     {
-        private SerienDBEntities db = new SerienDBEntities();
-
-        //todo anpassen
-
-
+        private UnitOfWork uow;
+        public SeriesController()
+        {
+            this.uow = new UnitOfWork(new SerienDBEntities());
+        }
         // GET: Series
         public ActionResult Index()
         {
-            return View(db.Serie.ToList());
+            return View(uow.Serie.GetAll());
         }
 
         // GET: Series/Details/5
@@ -30,7 +31,7 @@ namespace SerienMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Serie serie = db.Serie.Find(id);
+            Serie serie = uow.Serie.Get(id.Value);
             if (serie == null)
             {
                 return HttpNotFound();
@@ -53,8 +54,8 @@ namespace SerienMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Serie.Add(serie);
-                db.SaveChanges();
+                uow.Serie.Add(serie);
+                uow.Complete();
                 return RedirectToAction("Index");
             }
 
@@ -68,11 +69,12 @@ namespace SerienMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Serie serie = db.Serie.Find(id);
+            Serie serie = uow.Serie.Get(id.Value);
             if (serie == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.Actor = new SelectList(uow.Actor.GetAll(), "ID", "FirstName", serie.Actor);
             return View(serie);
         }
 
@@ -85,8 +87,8 @@ namespace SerienMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(serie).State = EntityState.Modified;
-                db.SaveChanges();
+                uow.Serie.Update(serie);
+                uow.Complete();
                 return RedirectToAction("Index");
             }
             return View(serie);
@@ -99,7 +101,7 @@ namespace SerienMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Serie serie = db.Serie.Find(id);
+            Serie serie = uow.Serie.Get(id.Value);
             if (serie == null)
             {
                 return HttpNotFound();
@@ -112,9 +114,9 @@ namespace SerienMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Serie serie = db.Serie.Find(id);
-            db.Serie.Remove(serie);
-            db.SaveChanges();
+            Serie serie = uow.Serie.Get(id);
+            uow.Serie.Remove(serie);
+            uow.Complete();
             return RedirectToAction("Index");
         }
 
@@ -122,7 +124,7 @@ namespace SerienMVC.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                uow.Dispose();
             }
             base.Dispose(disposing);
         }
