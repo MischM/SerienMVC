@@ -29,6 +29,14 @@ namespace SerienMVC.Repositories
                 .Include("Genre")
                 .ToList();
         }
+        public List<Serie> GetAllSeries()
+        {
+            return SerienDBEntities
+                .Serie
+                .Include("Genre")
+                .Include("Actor")
+                .ToList();
+        }
         public SerienDBEntities SerienDBEntities
         {
             get { return Context as SerienDBEntities; }

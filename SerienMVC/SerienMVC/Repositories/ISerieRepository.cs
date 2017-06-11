@@ -10,5 +10,6 @@ namespace SerienMVC.Repositories
     {
         List<Serie> GetSerieWithActors(int id);
         List<Serie> GetSerieWithGenres(int id);
+        List<Serie> GetAllSeries(); //With Genre and Actors
     }
 }
