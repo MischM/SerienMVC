@@ -42,6 +42,7 @@ namespace SerienMVC.Controllers
         // GET: Series/Create
         public ActionResult Create()
         {
+            ViewBag.Genre = new SelectList(uow.Genre.GetAll(), "ID", "Name");
             return View();
         }
 
@@ -58,7 +59,7 @@ namespace SerienMVC.Controllers
                 uow.Complete();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.Genre = new SelectList(uow.Genre.GetAll(), "ID", "Name");
             return View(serie);
         }
 
@@ -74,7 +75,7 @@ namespace SerienMVC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Actor = new SelectList(uow.Actor.GetAll(), "ID", "FirstName", serie.Actor);
+            ViewBag.Genre = new SelectList(uow.Genre.GetAll(), "ID", "Name");
             return View(serie);
         }
 
@@ -91,6 +92,7 @@ namespace SerienMVC.Controllers
                 uow.Complete();
                 return RedirectToAction("Index");
             }
+            //ViewBag.RegionId = new SelectList(uOW.Regionen.GetAll(), "RegionId", "RegionBezeichnung", hotel.RegionId);
             return View(serie);
         }
 
