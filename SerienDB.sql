@@ -25,22 +25,19 @@ CREATE TABLE Actor
 go
 CREATE TABLE SerieGenre
 (
-	fk_Genre integer NOT NULL,
-	fk_Serie integer NOT NULL,
-	FOREIGN KEY (fk_Genre) REFERENCES Genre(ID),
-	FOREIGN KEY (fk_Serie) REFERENCES Serie(ID),
-	PRIMARY KEY (fk_Genre, fk_Serie)
+	ID integer IDENTITY (1,1) PRIMARY KEY,
+	fk_Genre integer FOREIGN KEY REFERENCES Genre(ID),
+	fk_Serie integer FOREIGN KEY REFERENCES Serie(ID),
+	CONSTRAINT UniqueForeigKeys UNIQUE (fk_Genre, fk_Serie)
 )
 go
 CREATE TABLE SerieActor
 (
-	fk_Serie integer NOT NULL,
-	fk_Actor integer NOT NULL,	
-	FOREIGN KEY (fk_Actor) REFERENCES Actor(ID),
-	FOREIGN KEY (fk_Serie) REFERENCES Serie(ID),
-	PRIMARY KEY (fk_Actor, fk_Serie)	
+	ID integer IDENTITY (1,1) PRIMARY KEY,
+	fk_Serie integer FOREIGN KEY REFERENCES Serie(ID),
+	fk_Actor integer FOREIGN KEY REFERENCES Actor(ID),
+	CONSTRAINT UniqueForeigKeys UNIQUE (fk_Actor, fk_Serie)
 )
-
 go
 
 INSERT INTO Genre VALUES ('Action')
