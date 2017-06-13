@@ -50,9 +50,9 @@ INSERT INTO Actor VALUES ('Grant','Gustin')
 INSERT INTO Actor VALUES ('Ellen','Pompeo')
 INSERT INTO Actor VALUES ('Sandra','Oh')
 
-INSERT INTO Serie VALUES ('13 Reasons Why', 9 , '31.03.2017')
-INSERT INTO Serie VALUES ('The Flash', 8 ,'07.10.2014')
-INSERT INTO Serie VALUES ('Greys Anatomy', 8 ,'27.03.2005')
+INSERT INTO Serie VALUES ('13 Reasons Why', 9 , convert(date,'31.03.2017',104))
+INSERT INTO Serie VALUES ('The Flash', 8 , convert(date,'07.10.2014',104))
+INSERT INTO Serie VALUES ('Greys Anatomy', 8 ,convert(date,'27.03.2005',104))
 
 INSERT INTO SerieActor VALUES (1,1)
 INSERT INTO SerieActor VALUES (1,2)
