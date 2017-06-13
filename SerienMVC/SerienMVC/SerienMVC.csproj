@@ -226,6 +226,12 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\cultures\globalize.culture.de-AT.js" />
+    <Content Include="Scripts\cultures\globalize.culture.de-CH.js" />
+    <Content Include="Scripts\cultures\globalize.culture.de-DE.js" />
+    <Content Include="Scripts\cultures\globalize.culture.de-LI.js" />
+    <Content Include="Scripts\cultures\globalize.culture.de-LU.js" />
+    <Content Include="Scripts\cultures\globalize.culture.de.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -237,6 +243,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\localization\messages_de_CH.js" />
+    <Content Include="Scripts\localization\messages_en_US.js" />
+    <Content Include="Scripts\localization\messages_es_AR.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />

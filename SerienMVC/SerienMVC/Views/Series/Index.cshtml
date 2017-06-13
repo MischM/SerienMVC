@@ -37,9 +37,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.ReleaseDate)
         </td>
-<!--    <td> todo
+<!-- Not working due to problem 6 (view documentation)
+        <td>                
             @Html.DisplayFor(modelItem => item.Genre)
-        </td>-->  
+        </td>
+-->  
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |

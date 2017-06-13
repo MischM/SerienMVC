@@ -37,5 +37,15 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <!--Für Clientseitige Validierung-->
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/globalisation")
+    @Scripts.Render("~/bundles/application")
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+    $(document).ready(function () {
+        Application.init();
+     });
+    </script>
 </body>
 </html>

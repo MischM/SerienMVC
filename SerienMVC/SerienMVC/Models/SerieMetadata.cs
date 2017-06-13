@@ -14,11 +14,12 @@ namespace SerienMVC.Models
         public string SerieName;
 
         [Required(ErrorMessage = "Please insert a rating")]
+        [Range(0,10,ErrorMessage = "Rating must be between 0 and 10.")]
         [Display(Name = "Rating")]
         public string Rating;
 
         [Required(ErrorMessage = "Please insert a release date")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Release date")]
         public string ReleaseDate;
     }
