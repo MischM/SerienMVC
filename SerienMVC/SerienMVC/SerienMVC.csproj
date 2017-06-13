@@ -156,7 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actor.cs">
-      <DependentUpon>SeriesDB.tt</DependentUpon>
+      <DependentUpon>SerienDB.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -166,7 +166,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SeriesController.cs" />
     <Compile Include="Genre.cs">
-      <DependentUpon>SeriesDB.tt</DependentUpon>
+      <DependentUpon>SerienDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -187,22 +187,28 @@
     <Compile Include="Repositories\SerieRepository.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="Serie.cs">
-      <DependentUpon>SeriesDB.tt</DependentUpon>
+      <DependentUpon>SerienDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="SeriesDB.Context.cs">
+    <Compile Include="SerieActor.cs">
+      <DependentUpon>SerienDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SerieGenre.cs">
+      <DependentUpon>SerienDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SerienDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SeriesDB.Context.tt</DependentUpon>
+      <DependentUpon>SerienDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="SeriesDB.cs">
+    <Compile Include="SerienDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SeriesDB.tt</DependentUpon>
+      <DependentUpon>SerienDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="SeriesDB.Designer.cs">
+    <Compile Include="SerienDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SeriesDB.edmx</DependentUpon>
+      <DependentUpon>SerienDB.edmx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -253,15 +259,15 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="SeriesDB.Context.tt">
+    <Content Include="SerienDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SeriesDB.edmx</DependentUpon>
-      <LastGenOutput>SeriesDB.Context.cs</LastGenOutput>
+      <DependentUpon>SerienDB.edmx</DependentUpon>
+      <LastGenOutput>SerienDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="SeriesDB.tt">
+    <Content Include="SerienDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SeriesDB.edmx</DependentUpon>
-      <LastGenOutput>SeriesDB.cs</LastGenOutput>
+      <DependentUpon>SerienDB.edmx</DependentUpon>
+      <LastGenOutput>SerienDB.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -275,13 +281,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <EntityDeploy Include="SeriesDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SeriesDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="SeriesDB.edmx.diagram">
-      <DependentUpon>SeriesDB.edmx</DependentUpon>
-    </Content>
     <Content Include="Views\Series\Create.cshtml" />
     <Content Include="Views\Series\Delete.cshtml" />
     <Content Include="Views\Series\Details.cshtml" />
@@ -297,6 +296,13 @@
     <Content Include="Views\Genres\Details.cshtml" />
     <Content Include="Views\Genres\Edit.cshtml" />
     <Content Include="Views\Genres\Index.cshtml" />
+    <EntityDeploy Include="SerienDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SerienDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="SerienDB.edmx.diagram">
+      <DependentUpon>SerienDB.edmx</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

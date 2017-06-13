@@ -23,24 +23,22 @@ CREATE TABLE Actor
 	LastName varchar(50) NOT NULL,
 )
 go
+
 CREATE TABLE SerieGenre
 (
-	fk_Genre integer NOT NULL,
-	fk_Serie integer NOT NULL,
-	FOREIGN KEY (fk_Genre) REFERENCES Genre(ID),
-	FOREIGN KEY (fk_Serie) REFERENCES Serie(ID),
-	PRIMARY KEY (fk_Genre, fk_Serie)
+    ID integer IDENTITY (1,1) PRIMARY KEY,
+    fk_Genre integer FOREIGN KEY REFERENCES Genre(ID),
+    fk_Serie integer FOREIGN KEY REFERENCES Serie(ID),
+    CONSTRAINT UniqueSG UNIQUE (fk_Genre, fk_Serie)
 )
 go
 CREATE TABLE SerieActor
 (
-	fk_Serie integer NOT NULL,
-	fk_Actor integer NOT NULL,	
-	FOREIGN KEY (fk_Actor) REFERENCES Actor(ID),
-	FOREIGN KEY (fk_Serie) REFERENCES Serie(ID),
-	PRIMARY KEY (fk_Actor, fk_Serie)	
+    ID integer IDENTITY (1,1) PRIMARY KEY,
+    fk_Serie integer FOREIGN KEY REFERENCES Serie(ID),  
+    fk_Actor integer FOREIGN KEY REFERENCES Actor(ID),
+    CONSTRAINT UniqueSA UNIQUE (fk_Actor, fk_Serie)
 )
-
 go
 
 INSERT INTO Genre VALUES ('Action')
@@ -53,9 +51,9 @@ INSERT INTO Actor VALUES ('Grant','Gustin')
 INSERT INTO Actor VALUES ('Ellen','Pompeo')
 INSERT INTO Actor VALUES ('Sandra','Oh')
 
-INSERT INTO Serie VALUES ('13 Reasons Why', 9 , '31.03.2017')
-INSERT INTO Serie VALUES ('The Flash', 8 ,'07.10.2014')
-INSERT INTO Serie VALUES ('Greys Anatomy', 8 ,'27.03.2005')
+INSERT INTO Serie VALUES ('13 Reasons Why', 9 , convert(datetime,'31.03.2017',104))
+INSERT INTO Serie VALUES ('The Flash', 8 , convert(datetime,'07.10.2014',104))
+INSERT INTO Serie VALUES ('Greys Anatomy', 8 ,convert(datetime,'27.03.2005',104))
 
 INSERT INTO SerieActor VALUES (1,1)
 INSERT INTO SerieActor VALUES (1,2)

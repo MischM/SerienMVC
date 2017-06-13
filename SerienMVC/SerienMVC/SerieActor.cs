@@ -12,18 +12,13 @@ namespace SerienMVC
     using System;
     using System.Collections.Generic;
     
-    public partial class Genre
+    public partial class SerieActor
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Genre()
-        {
-            this.SerieGenre = new HashSet<SerieGenre>();
-        }
-    
         public int ID { get; set; }
-        public string Name { get; set; }
+        public Nullable<int> fk_Serie { get; set; }
+        public Nullable<int> fk_Actor { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SerieGenre> SerieGenre { get; set; }
+        public virtual Actor Actor { get; set; }
+        public virtual Serie Serie { get; set; }
     }
 }

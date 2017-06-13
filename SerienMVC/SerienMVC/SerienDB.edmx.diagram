@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="afd6eb8d78a142e5ad5ebff0a3201242" Name="Diagram1">
+        <EntityTypeShape EntityType="SerienDBModel.Actor" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="SerienDBModel.Genre" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SerienDBModel.Serie" Width="1.5" PointX="5.375" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SerienDBModel.SerieActor" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SerienDBModel.SerieGenre" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="SerienDBModel.FK__SerieActo__fk_Ac__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="SerienDBModel.FK__SerieGenr__fk_Ge__173876EA" ManuallyRouted="false" />
+        <AssociationConnector Association="SerienDBModel.FK__SerieActo__fk_Se__1BFD2C07" ManuallyRouted="false" />
+        <AssociationConnector Association="SerienDBModel.FK__SerieGenr__fk_Se__182C9B23" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

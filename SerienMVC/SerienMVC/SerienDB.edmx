@@ -31,22 +31,22 @@
         </EntityType>
         <EntityType Name="SerieActor">
           <Key>
-            <PropertyRef Name="fk_Serie" />
-            <PropertyRef Name="fk_Actor" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="fk_Serie" Type="int" Nullable="false" />
-          <Property Name="fk_Actor" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_Serie" Type="int" />
+          <Property Name="fk_Actor" Type="int" />
         </EntityType>
         <EntityType Name="SerieGenre">
           <Key>
-            <PropertyRef Name="fk_Genre" />
-            <PropertyRef Name="fk_Serie" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="fk_Genre" Type="int" Nullable="false" />
-          <Property Name="fk_Serie" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_Genre" Type="int" />
+          <Property Name="fk_Serie" Type="int" />
         </EntityType>
-        <Association Name="FK__SerieActo__fk_Ac__1A14E395">
-          <End Role="Actor" Type="Self.Actor" Multiplicity="1" />
+        <Association Name="FK__SerieActo__fk_Ac__1CF15040">
+          <End Role="Actor" Type="Self.Actor" Multiplicity="0..1" />
           <End Role="SerieActor" Type="Self.SerieActor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Actor">
@@ -57,8 +57,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SerieActo__fk_Se__1B0907CE">
-          <End Role="Serie" Type="Self.Serie" Multiplicity="1" />
+        <Association Name="FK__SerieActo__fk_Se__1BFD2C07">
+          <End Role="Serie" Type="Self.Serie" Multiplicity="0..1" />
           <End Role="SerieActor" Type="Self.SerieActor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Serie">
@@ -69,8 +69,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SerieGenr__fk_Ge__164452B1">
-          <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
+        <Association Name="FK__SerieGenr__fk_Ge__173876EA">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="0..1" />
           <End Role="SerieGenre" Type="Self.SerieGenre" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Genre">
@@ -81,8 +81,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SerieGenr__fk_Se__173876EA">
-          <End Role="Serie" Type="Self.Serie" Multiplicity="1" />
+        <Association Name="FK__SerieGenr__fk_Se__182C9B23">
+          <End Role="Serie" Type="Self.Serie" Multiplicity="0..1" />
           <End Role="SerieGenre" Type="Self.SerieGenre" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Serie">
@@ -99,19 +99,19 @@
           <EntitySet Name="Serie" EntityType="Self.Serie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SerieActor" EntityType="Self.SerieActor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SerieGenre" EntityType="Self.SerieGenre" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__SerieActo__fk_Ac__1A14E395" Association="Self.FK__SerieActo__fk_Ac__1A14E395">
+          <AssociationSet Name="FK__SerieActo__fk_Ac__1CF15040" Association="Self.FK__SerieActo__fk_Ac__1CF15040">
             <End Role="Actor" EntitySet="Actor" />
             <End Role="SerieActor" EntitySet="SerieActor" />
           </AssociationSet>
-          <AssociationSet Name="FK__SerieActo__fk_Se__1B0907CE" Association="Self.FK__SerieActo__fk_Se__1B0907CE">
+          <AssociationSet Name="FK__SerieActo__fk_Se__1BFD2C07" Association="Self.FK__SerieActo__fk_Se__1BFD2C07">
             <End Role="Serie" EntitySet="Serie" />
             <End Role="SerieActor" EntitySet="SerieActor" />
           </AssociationSet>
-          <AssociationSet Name="FK__SerieGenr__fk_Ge__164452B1" Association="Self.FK__SerieGenr__fk_Ge__164452B1">
+          <AssociationSet Name="FK__SerieGenr__fk_Ge__173876EA" Association="Self.FK__SerieGenr__fk_Ge__173876EA">
             <End Role="Genre" EntitySet="Genre" />
             <End Role="SerieGenre" EntitySet="SerieGenre" />
           </AssociationSet>
-          <AssociationSet Name="FK__SerieGenr__fk_Se__173876EA" Association="Self.FK__SerieGenr__fk_Se__173876EA">
+          <AssociationSet Name="FK__SerieGenr__fk_Se__182C9B23" Association="Self.FK__SerieGenr__fk_Se__182C9B23">
             <End Role="Serie" EntitySet="Serie" />
             <End Role="SerieGenre" EntitySet="SerieGenre" />
           </AssociationSet>
@@ -128,7 +128,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Serie" Relationship="Self.SerieActor" FromRole="Actor" ToRole="Serie" />
+          <NavigationProperty Name="SerieActor" Relationship="Self.FK__SerieActo__fk_Ac__1CF15040" FromRole="Actor" ToRole="SerieActor" />
         </EntityType>
         <EntityType Name="Genre">
           <Key>
@@ -136,7 +136,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Serie" Relationship="Self.SerieGenre" FromRole="Genre" ToRole="Serie" />
+          <NavigationProperty Name="SerieGenre" Relationship="Self.FK__SerieGenr__fk_Ge__173876EA" FromRole="Genre" ToRole="SerieGenre" />
         </EntityType>
         <EntityType Name="Serie">
           <Key>
@@ -146,28 +146,98 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Rating" Type="Int32" />
           <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Actor" Relationship="Self.SerieActor" FromRole="Serie" ToRole="Actor" />
-          <NavigationProperty Name="Genre" Relationship="Self.SerieGenre" FromRole="Serie" ToRole="Genre" />
+          <NavigationProperty Name="SerieActor" Relationship="Self.FK__SerieActo__fk_Se__1BFD2C07" FromRole="Serie" ToRole="SerieActor" />
+          <NavigationProperty Name="SerieGenre" Relationship="Self.FK__SerieGenr__fk_Se__182C9B23" FromRole="Serie" ToRole="SerieGenre" />
         </EntityType>
-        <Association Name="SerieActor">
-          <End Role="Actor" Type="Self.Actor" Multiplicity="*" />
-          <End Role="Serie" Type="Self.Serie" Multiplicity="*" />
+        <EntityType Name="SerieActor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_Serie" Type="Int32" />
+          <Property Name="fk_Actor" Type="Int32" />
+          <NavigationProperty Name="Actor" Relationship="Self.FK__SerieActo__fk_Ac__1CF15040" FromRole="SerieActor" ToRole="Actor" />
+          <NavigationProperty Name="Serie" Relationship="Self.FK__SerieActo__fk_Se__1BFD2C07" FromRole="SerieActor" ToRole="Serie" />
+        </EntityType>
+        <EntityType Name="SerieGenre">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_Genre" Type="Int32" />
+          <Property Name="fk_Serie" Type="Int32" />
+          <NavigationProperty Name="Genre" Relationship="Self.FK__SerieGenr__fk_Ge__173876EA" FromRole="SerieGenre" ToRole="Genre" />
+          <NavigationProperty Name="Serie" Relationship="Self.FK__SerieGenr__fk_Se__182C9B23" FromRole="SerieGenre" ToRole="Serie" />
+        </EntityType>
+        <Association Name="FK__SerieActo__fk_Ac__1CF15040">
+          <End Role="Actor" Type="Self.Actor" Multiplicity="0..1" />
+          <End Role="SerieActor" Type="Self.SerieActor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SerieActor">
+              <PropertyRef Name="fk_Actor" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
-        <Association Name="SerieGenre">
-          <End Role="Genre" Type="Self.Genre" Multiplicity="*" />
-          <End Role="Serie" Type="Self.Serie" Multiplicity="*" />
+        <Association Name="FK__SerieGenr__fk_Ge__173876EA">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="0..1" />
+          <End Role="SerieGenre" Type="Self.SerieGenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SerieGenre">
+              <PropertyRef Name="fk_Genre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SerieActo__fk_Se__1BFD2C07">
+          <End Role="Serie" Type="Self.Serie" Multiplicity="0..1" />
+          <End Role="SerieActor" Type="Self.SerieActor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Serie">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SerieActor">
+              <PropertyRef Name="fk_Serie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SerieGenr__fk_Se__182C9B23">
+          <End Role="Serie" Type="Self.Serie" Multiplicity="0..1" />
+          <End Role="SerieGenre" Type="Self.SerieGenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Serie">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SerieGenre">
+              <PropertyRef Name="fk_Serie" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SerienDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Actor" EntityType="Self.Actor" />
           <EntitySet Name="Genre" EntityType="Self.Genre" />
           <EntitySet Name="Serie" EntityType="Self.Serie" />
-          <AssociationSet Name="SerieActor" Association="Self.SerieActor">
+          <EntitySet Name="SerieActor" EntityType="Self.SerieActor" />
+          <EntitySet Name="SerieGenre" EntityType="Self.SerieGenre" />
+          <AssociationSet Name="FK__SerieActo__fk_Ac__1CF15040" Association="Self.FK__SerieActo__fk_Ac__1CF15040">
             <End Role="Actor" EntitySet="Actor" />
-            <End Role="Serie" EntitySet="Serie" />
+            <End Role="SerieActor" EntitySet="SerieActor" />
           </AssociationSet>
-          <AssociationSet Name="SerieGenre" Association="Self.SerieGenre">
+          <AssociationSet Name="FK__SerieGenr__fk_Ge__173876EA" Association="Self.FK__SerieGenr__fk_Ge__173876EA">
             <End Role="Genre" EntitySet="Genre" />
+            <End Role="SerieGenre" EntitySet="SerieGenre" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SerieActo__fk_Se__1BFD2C07" Association="Self.FK__SerieActo__fk_Se__1BFD2C07">
             <End Role="Serie" EntitySet="Serie" />
+            <End Role="SerieActor" EntitySet="SerieActor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SerieGenr__fk_Se__182C9B23" Association="Self.FK__SerieGenr__fk_Se__182C9B23">
+            <End Role="Serie" EntitySet="Serie" />
+            <End Role="SerieGenre" EntitySet="SerieGenre" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -203,22 +273,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="SerieActor" TypeName="SerienDBModel.SerieActor" StoreEntitySet="SerieActor">
-            <EndProperty Name="Actor">
-              <ScalarProperty Name="ID" ColumnName="fk_Actor" />
-            </EndProperty>
-            <EndProperty Name="Serie">
-              <ScalarProperty Name="ID" ColumnName="fk_Serie" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="SerieGenre" TypeName="SerienDBModel.SerieGenre" StoreEntitySet="SerieGenre">
-            <EndProperty Name="Genre">
-              <ScalarProperty Name="ID" ColumnName="fk_Genre" />
-            </EndProperty>
-            <EndProperty Name="Serie">
-              <ScalarProperty Name="ID" ColumnName="fk_Serie" />
-            </EndProperty>
-          </AssociationSetMapping>
+          <EntitySetMapping Name="SerieActor">
+            <EntityTypeMapping TypeName="SerienDBModel.SerieActor">
+              <MappingFragment StoreEntitySet="SerieActor">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="fk_Serie" ColumnName="fk_Serie" />
+                <ScalarProperty Name="fk_Actor" ColumnName="fk_Actor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SerieGenre">
+            <EntityTypeMapping TypeName="SerienDBModel.SerieGenre">
+              <MappingFragment StoreEntitySet="SerieGenre">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="fk_Genre" ColumnName="fk_Genre" />
+                <ScalarProperty Name="fk_Serie" ColumnName="fk_Serie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -236,7 +308,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
