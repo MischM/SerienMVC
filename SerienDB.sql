@@ -6,6 +6,7 @@ CREATE TABLE Genre
 (
 	ID integer IDENTITY (1,1) PRIMARY KEY,
 	Name varchar(50) NOT NULL,
+	ON DELETE CASCADE
 )
 go
 CREATE TABLE Serie
@@ -14,6 +15,7 @@ CREATE TABLE Serie
 	Name varchar(50) NOT NULL,
 	Rating integer NULL,
 	ReleaseDate date NOT NULL
+	ON DELETE CASCADE
 )
 go
 CREATE TABLE Actor
@@ -21,6 +23,7 @@ CREATE TABLE Actor
 	ID integer IDENTITY (1,1) PRIMARY KEY,
 	FirstName varchar(50) NOT NULL,
 	LastName varchar(50) NOT NULL,
+	ON DELETE CASCADE
 )
 go
 CREATE TABLE SerieGenre
