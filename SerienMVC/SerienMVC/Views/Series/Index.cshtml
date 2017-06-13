@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<SerienMVC.Serie>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Series";
 }
 
-<h2>Index</h2>
+<h2>Series</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -37,11 +37,16 @@
         <td>
             @Html.DisplayFor(modelItem => item.ReleaseDate)
         </td>
-<!-- Not working due to problem 6 (view documentation)
-        <td>                
-            @Html.DisplayFor(modelItem => item.Genre)
+
+        <td>
+            <ul>
+                @foreach (var genre in item.Genre)
+                {
+                    <li>@genre.Name</li>
+                }
+            </ul>
         </td>
--->  
+
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |
