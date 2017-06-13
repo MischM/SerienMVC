@@ -26,6 +26,19 @@ namespace SerienMVC
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/globalisation").Include(
+                    "~/Scripts/globalize.js",
+                    "~/Scripts/cultures/globalize.culture.de-CH.js",
+                    "~/Scripts/cultures/globalize.culture.en-US.js",
+                    "~/Scripts/additional-methods.js",
+                    "~/Scripts/localization/messages_de_CH.js",
+                    "~/Scripts/localization/messages_en_US.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/application").Include(
+                      "~/Scripts/Application.js"
+                 ));
         }
     }
 }
