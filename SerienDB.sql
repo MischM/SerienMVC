@@ -28,7 +28,7 @@ CREATE TABLE SerieGenre
 	ID integer IDENTITY (1,1) PRIMARY KEY,
 	fk_Genre integer FOREIGN KEY REFERENCES Genre(ID) ON DELETE CASCADE,
 	fk_Serie integer FOREIGN KEY REFERENCES Serie(ID) ON DELETE CASCADE,
-	CONSTRAINT UniqueForeigKeys UNIQUE (fk_Genre, fk_Serie)
+	CONSTRAINT UniqueSG UNIQUE (fk_Genre, fk_Serie)
 )
 go
 CREATE TABLE SerieActor
@@ -36,7 +36,7 @@ CREATE TABLE SerieActor
 	ID integer IDENTITY (1,1) PRIMARY KEY,
 	fk_Serie integer FOREIGN KEY REFERENCES Serie(ID) ON DELETE CASCADE,
 	fk_Actor integer FOREIGN KEY REFERENCES Actor(ID) ON DELETE CASCADE,
-	CONSTRAINT UniqueForeigKeys UNIQUE (fk_Actor, fk_Serie)
+	CONSTRAINT UniqueSA UNIQUE (fk_Actor, fk_Serie)
 )
 go
 
