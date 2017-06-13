@@ -6,7 +6,6 @@ CREATE TABLE Genre
 (
 	ID integer IDENTITY (1,1) PRIMARY KEY,
 	Name varchar(50) NOT NULL,
-	ON DELETE CASCADE
 )
 go
 CREATE TABLE Serie
@@ -15,7 +14,6 @@ CREATE TABLE Serie
 	Name varchar(50) NOT NULL,
 	Rating integer NULL,
 	ReleaseDate date NOT NULL
-	ON DELETE CASCADE
 )
 go
 CREATE TABLE Actor
@@ -23,22 +21,21 @@ CREATE TABLE Actor
 	ID integer IDENTITY (1,1) PRIMARY KEY,
 	FirstName varchar(50) NOT NULL,
 	LastName varchar(50) NOT NULL,
-	ON DELETE CASCADE
 )
 go
 CREATE TABLE SerieGenre
 (
 	ID integer IDENTITY (1,1) PRIMARY KEY,
-	fk_Genre integer FOREIGN KEY REFERENCES Genre(ID),
-	fk_Serie integer FOREIGN KEY REFERENCES Serie(ID),
+	fk_Genre integer FOREIGN KEY REFERENCES Genre(ID) ON DELETE CASCADE,
+	fk_Serie integer FOREIGN KEY REFERENCES Serie(ID) ON DELETE CASCADE,
 	CONSTRAINT UniqueForeigKeys UNIQUE (fk_Genre, fk_Serie)
 )
 go
 CREATE TABLE SerieActor
 (
 	ID integer IDENTITY (1,1) PRIMARY KEY,
-	fk_Serie integer FOREIGN KEY REFERENCES Serie(ID),
-	fk_Actor integer FOREIGN KEY REFERENCES Actor(ID),
+	fk_Serie integer FOREIGN KEY REFERENCES Serie(ID) ON DELETE CASCADE,
+	fk_Actor integer FOREIGN KEY REFERENCES Actor(ID) ON DELETE CASCADE,
 	CONSTRAINT UniqueForeigKeys UNIQUE (fk_Actor, fk_Serie)
 )
 go
